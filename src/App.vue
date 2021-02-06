@@ -59,7 +59,7 @@ export default {
     },
     getTasks(){
       axios
-        .get('http://itmaskinen-todo-list.test/api/v1/tasks',{
+        .get('http://devtest.techteampinas.com/api/v1/tasks',{
           headers: {
             'x-api-token': this.api_token, 
             'user-id':1
@@ -78,11 +78,11 @@ export default {
       this.$refs.input_task.focus();
     },
     createTask(){
-      //implement create task
+      //TODO: implement create task
     },
     updateTask(){
       axios
-      .patch('http://itmaskinen-todo-list.test/api/v1/tasks/'+this.task_id,{
+      .patch('http://devtest.techteampinas.com/api/v1/tasks/'+this.task_id,{
         "task":this.task
         },{
         headers: {
@@ -102,7 +102,7 @@ export default {
       else
         isDone = true;
       axios
-      .patch('http://itmaskinen-todo-list.test/api/v1/tasks/'+this.task_id,{
+      .patch('http://devtest.techteampinas.com/api/v1/tasks/'+this.task_id,{
         "done":isDone
         },{
         headers: {
@@ -115,7 +115,7 @@ export default {
     },
     deleteTask(){
       axios
-      .delete('http://itmaskinen-todo-list.test/api/v1/tasks/'+this.task_id,{
+      .delete('http://devtest.techteampinas.com/api/v1/tasks/'+this.task_id,{
         headers: {
           'x-api-token': this.api_token, 
           'user-id':1
