@@ -34,12 +34,8 @@ export default {
   },
   mounted () {
     this.getTasks()
-    this.$refs.input_task.focus();
   },
   updated(){
-    this.$refs.input_task.focus();
-  },
-  inserted: function(){
     this.$refs.input_task.focus();
   },
   methods:{
@@ -82,18 +78,7 @@ export default {
       this.$refs.input_task.focus();
     },
     createTask(){
-      axios
-      .post('http://itmaskinen-todo-list.test/api/v1/tasks',{
-        "task":this.task
-        },{
-        headers: {
-          'x-api-token': this.api_token, 
-          'user-id':1
-        }
-      })
-      .then(this.getTasks)
-      this.task = ''
-      this.isEditing = false
+      //implement create task
     },
     updateTask(){
       axios
