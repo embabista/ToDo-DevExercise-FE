@@ -1,4 +1,4 @@
-# itmaskinen-todo-list
+# ToDo-DevExercise-FE
 
 ## Project setup
 ```
