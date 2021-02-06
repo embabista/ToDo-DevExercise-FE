@@ -27,7 +27,8 @@ export default {
     return {
       tasks:[],
       task:'',
-      api_token: 'TVdqWWRiaUdhZmNZVlJjSjF0QXI1NWtPQmd3bmNhS2RyUGYwZENCZA==',
+      main_url: 'http://exercise.test/api/v1/',
+      api_token: 'cnB3WlZIa3Ewc1lJMDhIOEYzUVIzdTNndDk1MjQ5SnB6Y0hkUkFENg==',
       isEditing: false,
       task_id: 0
     }
@@ -59,7 +60,7 @@ export default {
     },
     getTasks(){
       axios
-        .get('http://devtest.techteampinas.com/api/v1/tasks',{
+        .get(this.main_url+'tasks',{
           headers: {
             'x-api-token': this.api_token, 
             'user-id':1
@@ -78,11 +79,25 @@ export default {
       this.$refs.input_task.focus();
     },
     createTask(){
-      //TODO: implement create task
+
+      axios
+          .post(this.main_url+'tasks',{
+            "task":this.task,
+            "user_id":1
+          },{
+            headers: {
+              'x-api-token': this.api_token,
+
+            }
+          })
+          .then(this.getTasks)
+      this.task = ''
+      this.isEditing = false
+
     },
     updateTask(){
       axios
-      .patch('http://devtest.techteampinas.com/api/v1/tasks/'+this.task_id,{
+      .patch(this.main_url+'tasks'+this.task_id,{
         "task":this.task
         },{
         headers: {
@@ -102,7 +117,7 @@ export default {
       else
         isDone = true;
       axios
-      .patch('http://devtest.techteampinas.com/api/v1/tasks/'+this.task_id,{
+      .patch(this.main_url+'tasks/'+this.task_id,{
         "done":isDone
         },{
         headers: {
@@ -115,7 +130,7 @@ export default {
     },
     deleteTask(){
       axios
-      .delete('http://devtest.techteampinas.com/api/v1/tasks/'+this.task_id,{
+      .delete(this.main_url+'tasks/'+this.task_id,{
         headers: {
           'x-api-token': this.api_token, 
           'user-id':1
